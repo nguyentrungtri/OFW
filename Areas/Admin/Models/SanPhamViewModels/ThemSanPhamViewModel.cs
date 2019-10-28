@@ -49,12 +49,12 @@ namespace PhuKienDienThoai.Areas.Admin.Models.SanPhamViewModels
 
         #endregion
 
-        #region Chất liệu
+        /**#region Chất liệu
 
         [Display(Name = "Chất liệu")]
         [Required(ErrorMessage = "Chất liệu bắt buộc")]
         public string DinhDang { get; set; }
-        #endregion
+        #endregion*/
 
         #region Mặt hàng
 
@@ -80,11 +80,11 @@ namespace PhuKienDienThoai.Areas.Admin.Models.SanPhamViewModels
 
         #endregion
 
-        #region Màu sắc
+        /**#region Màu sắc
         [Required(ErrorMessage = "Màu sắc là bắt buộc")]
         [Display(Name = "Màu sắc")]
         public string MauSac { get; set; }
-        #endregion
+        #endregion*/
 
         #region Tóm tắt
         [Display(Name = "Tóm tắt")]

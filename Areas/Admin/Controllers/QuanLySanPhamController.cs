@@ -54,12 +54,12 @@ namespace PhuKienDienThoai.Areas.Admin.Controllers
                 DongDienThoaiId = sanpham.DongDienThoaiId,
                 DanhMucId = sanpham.DanhMucId,
                 ThuongHieuId = sanpham.ThuongHieuId,
-                DinhDang = sanpham.DinhDang,
+                //DinhDang = sanpham.DinhDang,
                 DonGia = sanpham.DonGia,
                 TomTat = sanpham.TomTat,
                 TenSanPham = sanpham.TenSanPham,
                 SoLuong = sanpham.SoLuong,
-                MauSac = sanpham.MauSac,
+                //MauSac = sanpham.MauSac,
                 HinhAnh = sanpham.HinhAnh,
                 PhanTramGiamGia = sanpham.PhanTramGiamGia,
                 MatHangs = await context.MatHang.ToListAsync(),
@@ -85,13 +85,13 @@ namespace PhuKienDienThoai.Areas.Admin.Controllers
             var sanpham = await context.SanPham.FindAsync(id);
             sanpham.MatHangId = model.MatHangId;
             sanpham.DanhMucId = model.DanhMucId;
-            sanpham.DinhDang = model.DinhDang;
+            //sanpham.DinhDang = model.DinhDang;
             sanpham.DonGia = model.DonGia;
             sanpham.ThuongHieuId = model.ThuongHieuId;
             sanpham.TomTat = model.TomTat;
             sanpham.DongDienThoaiId = model.DongDienThoaiId;
             sanpham.SoLuong = model.SoLuong;
-            sanpham.MauSac = model.MauSac;
+            //sanpham.MauSac = model.MauSac;
             sanpham.PhanTramGiamGia = model.PhanTramGiamGia;
             sanpham.TenSanPham = model.TenSanPham;
 
@@ -140,8 +140,8 @@ namespace PhuKienDienThoai.Areas.Admin.Controllers
             var sanpham = new SanPham
             {
                 TenSanPham = model.TenSanPham,
-                MauSac = model.MauSac,
-                DinhDang = model.DinhDang,
+                //MauSac = model.MauSac,
+                //DinhDang = model.DinhDang,
                 DonGia = model.DonGia,
                 PhanTramGiamGia = model.PhanTramGiamGia,
                 MatHangId = model.MatHangId,
