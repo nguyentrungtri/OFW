@@ -1,0 +1,9 @@
+F:\tmdt_hcmue_2018-master\PayPalCore\bin\Release\netcoreapp2.0\PayPalCore.deps.json
+F:\tmdt_hcmue_2018-master\PayPalCore\bin\Release\netcoreapp2.0\PayPalCore.dll
+F:\tmdt_hcmue_2018-master\PayPalCore\bin\Release\netcoreapp2.0\PayPalCore.pdb
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.csprojAssemblyReference.cache
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.csproj.CoreCompileInputs.cache
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.AssemblyInfoInputs.cache
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.AssemblyInfo.cs
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.dll
+F:\tmdt_hcmue_2018-master\PayPalCore\obj\Release\netcoreapp2.0\PayPalCore.pdb
