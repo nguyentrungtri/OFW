@@ -35,27 +35,28 @@
             <li class='@if(ViewData["TagName"] == "QuanLyThuongHieu") { <text>active</text> }'>
                 <a asp-controller="QuanLyThuongHieu" asp-action="index">
                     <i class="fa fa-industry" aria-hidden="true"></i>
-                    <span>Quản lý Thương hiệu</span>
+                    <span>Quản lý Xuất xứ</span>
                 </a>
             </li>
             <li class='@if(ViewData["TagName"] == "QuanLyMatHang") { <text>active</text> }'>
                 <a asp-controller="QuanLyMatHang" asp-action="index">
                     <i class="fa fa-info" aria-hidden="true"></i>
-                    <span>Quản lý Mặt hàng</span>
-                </a>
-            </li>
-             <li class='@if(ViewData["TagName"] == "QuanLyDanhMuc") { <text>active</text> }'>
-                <a asp-controller="QuanLyDanhMuc" asp-action="index">
-                    <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span>Quản lý Danh mục</span>
+                    <span>Quản lý Kiểu phân loại</span>
                 </a>
             </li>
             <li class='@if(ViewData["TagName"] == "QuanLyDongDienThoai") { <text>active</text> }'>
                 <a asp-controller="QuanLyDongDienThoai" asp-action="index">
                     <i class="fa fa-yc-square" aria-hidden="true"></i>
-                    <span>Quản lý Dòng điện thoại</span>
+                    <span>Quản lý Phân loại</span>
                 </a>
             </li>
+            <li class='@if(ViewData["TagName"] == "QuanLyDanhMuc") { <text>active</text> }'>
+                <a asp-controller="QuanLyDanhMuc" asp-action="index">
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span>Quản lý Danh mục</span>
+                </a>
+            </li>
+
             <li class='@if(ViewData["TagName"] == "QuanLyNguoiDung") { <text>active</text> }'>
                 <a asp-controller="QuanLyNguoiDung" asp-action="index">
                     <i class="fa fa-users"></i>
@@ -63,11 +64,11 @@
                 </a>
             </li>
             @*<li class='@if(ViewData["TagName"] == "QuanLyLienLac") { <text>active</text> }'>
-                <a asp-controller="QuanLyLienLac" asp-action="index">
-                    <i class="fa fa-users"></i>
-                    <span>Quản lý Liên lạc</span>
-                </a>
-            </li>*@
+            <a asp-controller="QuanLyLienLac" asp-action="index">
+                <i class="fa fa-users"></i>
+                <span>Quản lý Liên lạc</span>
+            </a>
+        </li>*@
             <li class='@if(ViewData["TagName"] == "ThongKe") { <text>active</text> }'>
                 <a asp-controller="ThongKe" asp-action="Index">
                     <i class="fa fa-bar-chart"></i>
