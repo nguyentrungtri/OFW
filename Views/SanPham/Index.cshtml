@@ -1,41 +1,43 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
-
 @{
-    Layout="_MainLayout";
-    
+    Layout = "_MainLayout";
+
 }
 @model SanPham
-@if(Model != null)
+@if (Model != null)
 {
-    var isGiamGia = (Model.PhanTramGiamGia>0)?true:false;
-    <div class="product-details"><!--product-details-->
+    var isGiamGia = (Model.PhanTramGiamGia > 0) ? true : false;
+    <div class="product-details">
+        <!--product-details-->
         <div class="col-sm-5">
             <div class="view-product">
                 <img src="~/images/SanPham/@Model.HinhAnh" alt="" />
             </div>
         </div>
         <div class="col-sm-7">
-            <div class="product-information"><!--/product-information-->
+            <div class="product-information">
+                <!--/product-information-->
                 <h2>@Model.TenSanPham</h2>
-                <p>ID Sản phẩm: @Model.id</p>
+                <!-----<p>ID Sản phẩm: @Model.id</p> -->
                 <span>
                     <form id="frmDatHang" asp-action="ThemVaoGioHang" asp-controller="GioHang" asp-route-returnurl="@ViewData["ReturnUrl"]" method="POST">
-                        @if(isGiamGia)
+                        @if (isGiamGia)
                         {
                             <span style="text-decoration: line-through;">@Model.DonGia.ToString("#,0")Đ</span>
-                            <span>@((Model.DonGia*(100-Model.PhanTramGiamGia)/100).ToString("#,0"))Đ</span><br>
+                            <span>@((Model.DonGia * (100 - Model.PhanTramGiamGia) / 100).ToString("#,0"))Đ</span><br>
                         }
                         else
                         {
                             <span>@Model.DonGia.ToString("#,0")Đ</span>
                         }
-                        
+
                         <input type="hidden" name="SanPhamId" value="@Model.id">
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <label>Số lượng:
-                                <input type="text" value="1" name="SoLuong" required="required" class="Quantity"/>
+                            <label>
+                                Số lượng:
+                                <input type="text" value="1" name="SoLuong" required="required" class="Quantity" />
                             </label>
                             <button type="submit" class="btn btn-fefault cart">
                                 <i class="fa fa-shopping-cart"></i>
@@ -55,10 +57,14 @@
                     <p><h6 style="color:red">*Vui lòng đăng nhập để đặt hàng</h6></p>
                 }
             </div><!--/product-information-->
+            <div class="col-sm-5 pull-right">
+                <a class="btn btn-fefault cart" update" asp-action="index" asp-controller="Home">Quay lại Trang chủ</a>
+            </div>
         </div>
     </div><!--/product-details-->
 
-    <div class="category-tab shop-details-tab"><!--category-tab-->
+    <div class="category-tab shop-details-tab">
+        <!--category-tab-->
         <div class="col-sm-12">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#reviews" data-toggle="tab">Giới thiệu</a></li>
@@ -66,7 +72,7 @@
             </ul>
         </div>
         <div class="tab-content">
-            <div class="tab-pane fade active in" id="reviews" >
+            <div class="tab-pane fade active in" id="reviews">
                 <div class="col-sm-12">
                     <p>
                         <div><strong>@Model.TenSanPham</strong></div>
@@ -76,14 +82,14 @@
                     </p>
                 </div>
             </div>
-            <div class="tab-pane fade" id="NhanXet" >
+            <div class="tab-pane fade" id="NhanXet">
                 <div class="col-sm-12">
                     <form asp-action="ThemNhanXet" asp-controller="SanPham" id="frm_NhanXet" asp-route-returnurl="@ViewData["ReturnUrl"]">
                         <p><b>Ghi nhận xét của bạn</b></p>
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="TieuDe" placeholder="Tiêu đề"/>
-                                <input type="hidden" name="SanPhamId" value="@Model.id"/>
+                                <input class="form-control" type="text" name="TieuDe" placeholder="Tiêu đề" />
+                                <input type="hidden" name="SanPhamId" value="@Model.id" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -96,58 +102,76 @@
                         </button>
                     </form>
                     <div id="NhanXet">
-                        @await Component.InvokeAsync("NhanXetSanPham", new {SanPhamId=Model.id})
+                        @await Component.InvokeAsync("NhanXetSanPham", new { SanPhamId = Model.id })
                     </div>
                 </div>
             </div>
         </div>
     </div><!--/category-tab-->
 
-    @await Component.InvokeAsync("SanPhamCungDongDienThoai", new {DongDienThoaiId=@Model.DongDienThoai.Id, sanphamId=@Model.id})
-    @await Component.InvokeAsync("SanPhamCungThuongHieu", new {sanphamId=@Model.ThuongHieu.Id, ThuongHieuId=@Model.id})
+    @await Component.InvokeAsync("SanPhamCungDongDienThoai", new { DongDienThoaiId = @Model.DongDienThoai.Id, sanphamId = @Model.id })
+    @await Component.InvokeAsync("SanPhamCungThuongHieu", new { sanphamId = @Model.ThuongHieu.Id, ThuongHieuId = @Model.id })
 }
 else
 {
     <span>Không tìm thấy sản phẩm yêu cầu, vui lòng tìm với từ khóa khác</span>
 }
-
-@if(ViewData["message"]!=null){
+@if (ViewData["message"] != null)
+{
     <script>
         alert("@ViewData["message"]");
     </script>
 }
 @section Scripts
-{
+    {
+    <!-- Notification SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-------- Optional: include a polyfill for ES6 Promises for IE11 ------->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- End of Lib of Notification SweetAlert2 -->
+
     <script src="~/lib/ckeditor/ckeditor.js"></script>
     <script src="~/lib/OwlCarousel2/owl.carousel.min.js"></script>
     <script>
-    var BinhLuanDocument = document.getElementById("BinhLuan");
-        if(BinhLuanDocument)
-        {
+        var BinhLuanDocument = document.getElementById("BinhLuan");
+        if (BinhLuanDocument) {
             CKEDITOR.replace("BinhLuan",
-            {
-                customConfig: "/js/ckeditor.config.js"
-            });
+                {
+                    customConfig: "/js/ckeditor.config.js"
+                });
         }
-        $(function()
-        {
-            $(".owl-carousel").owlCarousel({items: 5});
-            $(".Quantity").keypress(e =>{if(e.keyCode < 48 || e.keyCode > 57)e.preventDefault()});
-            $("#frmDatHang").submit(function(e)
-            {
-                e.preventDefault();
-                var url = $(this).attr("action");
-                var serializeObj = $(this).serialize();
-                $.post(url, serializeObj, function(data, status, jqxhr)
-                {
-                    alert("Thêm vào giỏ hàng thành công");
-                    location.reload();
-                }).fail(function(xhr, status, err) 
-                {
-                    alert("Đã có lỗi xảy ra trong quá trình xử lý");
-                    console.log(err);
+        $(function () {
+                $(".owl-carousel").owlCarousel({ items: 5 });
+                $(".Quantity").keypress(e => { if (e.keyCode < 48 || e.keyCode > 57) e.preventDefault() });
+                $("#frmDatHang").submit(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("action");
+                    var serializeObj = $(this).serialize();
+                    $.post(url, serializeObj, function (data, status, jqxhr) {
+                        //alert("Thêm vào giỏ hàng thành công");
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Đã thêm vào giỏ hàng thành công',
+                            showConfirmButton: false,
+                            timer: 5000,
+                            width: 1000
+                        })
+                        location.reload();
+                    }).fail(function (xhr, status, err) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warn',
+                            title: 'Đã xảy ra lỗi trong quá trình xử lý',
+                            showConfirmButton: false,
+                            timer: 5000,
+                            width: 1000
+                        })
+                    });
                 });
             });
-        });
     </script>
 }

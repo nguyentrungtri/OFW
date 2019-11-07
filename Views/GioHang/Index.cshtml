@@ -13,24 +13,24 @@
 				<h3>Giỏ hàng của tôi</h3>
 			</div>
             <div class="table-responsive cart_info">
-				<table class="table" style="margin-bottom:0px ">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Ảnh SP</td>
-							<td class="description">Tên sản phẩm</td>
-							<td class="price">Đơn giá</td>
-							<td class="quantity">Số lượng</td>
-							<td class="total">Tổng tiền</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-                        @foreach(var item in Model)
+                <table class="table" style="margin-bottom:0px ">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Ảnh SP</td>
+                            <td class="description">Tên sản phẩm</td>
+                            <td class="price">Đơn giá</td>
+                            <td class="quantity">Số lượng</td>
+                            <td class="total">Tổng tiền</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            item_text += item.SoLuong.ToString() + " x " + item.SanPham.TenSanPham + " + "; 
+                            item_text += item.SoLuong.ToString() + " x " + item.SanPham.TenSanPham + " + ";
                             <tr>
                                 <td class="cart_product">
-                                   <img src="~/images/SanPham/@item.SanPham.HinhAnh" style="max-height:100px" alt="Ảnh của @item.SanPham.TenSanPham">
+                                    <img src="~/images/SanPham/@item.SanPham.HinhAnh" style="max-height:100px" alt="Ảnh của @item.SanPham.TenSanPham">
                                 </td>
                                 <td class="cart_description">
                                     <h4><a asp-controller="SanPham" asp-action="Index" asp-route-id="@item.SanPham.id" asp-area="">@item.SanPham.TenSanPham</a></h4>
@@ -52,21 +52,24 @@
                                 </td>
                             </tr>
                         }
-					</tbody>
+                    </tbody>
                     <tfoot class="cart_menu">
                         <tr>
                             <td colspan="4">Thành tiền</td>
                             <td>
-                                @Model.Sum(x=>x.ThanhTien).ToString("#,0")Đ
+                                @Model.Sum(x => x.ThanhTien).ToString("#,0") Đ
                             </td>
                             @{
                                 ViewData["mathang"] = System.Net.WebUtility.UrlEncode(item_text.Remove(item_text.Length - 3));
-                                ViewData["thanhtien"] = Model.Sum(x=>x.ThanhTien).ToString();
+                                ViewData["thanhtien"] = Model.Sum(x => x.ThanhTien).ToString();
                             }
                             <td></td>
                         </tr>
                     </tfoot>
-				</table>
+                    <div class="pull-right">
+                        <a class="btn btn-default update" asp-action="index" asp-controller="Home">Tiếp tục mua hàng</a>
+                    </div>
+                </table>
 			</div>
 		</div>
     </section>
@@ -142,7 +145,14 @@ else
             },
 
             onCancel: function(data) {
-                alert("Thanh toán qua PayPal bị huỷ");
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Thanh toán qua PayPal bị huỷ',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    width: 1000
+                })
             }
 
         }, '#paypal-button');
